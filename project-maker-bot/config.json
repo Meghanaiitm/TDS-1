@@ -1,0 +1,8 @@
+{
+  "student_email": "student@domain.com",
+  "shared_secret": "change-me",
+  "github_username": "your-github-username",
+  "github_token_env": "GITHUB_TOKEN",
+  "default_branch": "main",
+  "workspace_dir": "/workspace/project-maker-bot/workspace"
+}
