@@ -84,7 +84,7 @@ def handle_request():
     nonce = data.get("nonce")
     evaluation_url = data.get("evaluation_url")
     brief = data.get("brief")
-T
+
     if secret != "namaste":
         return jsonify({"error": "Invalid secret"}), 403
     
@@ -305,3 +305,4 @@ SOFTWARE.
 
 if __name__ == "__main__":
     app.run(debug=True)
+
