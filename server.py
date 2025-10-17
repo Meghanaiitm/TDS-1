@@ -10,6 +10,15 @@ from typing import Optional, Dict
 
 app = Flask(__name__)
 
+@app.route("/")
+def root_endpoint():
+    """Returns a status message for the root URL, fixing the 404 error."""
+    return jsonify({
+        "status": "Service Operational",
+        "message": "This is the API base. The primary endpoint is /api-endpoint.",
+        "version": "Final"
+    })
+
 AI_PIPE_TOKEN = os.environ.get("AI_PIPE_TOKEN", "placeholder_ai_token")
 GITHUB_USERNAME = os.environ.get("GITHUB_USERNAME", "placeholder_user")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "placeholder_github_token")
@@ -305,4 +314,5 @@ SOFTWARE.
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
