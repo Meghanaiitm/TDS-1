@@ -225,8 +225,20 @@ SOFTWARE.
 
             subprocess.run(["git", "remote", "add", "origin", remote_url_with_token], cwd=folder_name, check=True)
             
-            subprocess.run(["git", "push", "-u", "origin", "main"], cwd=folder_name, check=True)
-            
+            push_result = subprocess.run(
+                ["git", "push", "-u", "origin", "main"],
+                cwd=folder_name,
+                capture_output=True,
+                text=True
+            )
+
+            if push_result.returncode != 0:
+                return jsonify({
+                    "error": "Git push failed",
+                    "stdout": push_result.stdout,
+                    "stderr": push_result.stderr
+                }), 500
+
             sha_result = subprocess.run(
                 ["git", "rev-parse", "HEAD"], 
                 cwd=folder_name, 
@@ -314,5 +326,6 @@ SOFTWARE.
 
 if __name__ == "__main__":
     app.run(debug=True)
+
 
 
